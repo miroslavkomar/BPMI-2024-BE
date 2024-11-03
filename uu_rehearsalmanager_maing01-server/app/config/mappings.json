@@ -30,6 +30,11 @@
         "realization": "api-console.html",
         "httpMethod": "GET",
         "type": "UVE"
+      },
+      "scene/create": {
+        "realization": "api/controllers/SceneController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
       }
     }
   }

@@ -6,6 +6,9 @@
       "schemaMap": {
         "rehearsalmanagerMain": {
           "realization": "dao/RehearsalmanagerMainMongo"
+        },
+        "scene": {
+          "realization": "dao/SceneMongo"
         }
       }
     }
