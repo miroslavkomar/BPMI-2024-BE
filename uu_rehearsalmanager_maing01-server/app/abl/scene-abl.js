@@ -9,6 +9,9 @@ const logger = LoggerFactory.get("SceneAbl");
 const WARNINGS = {
   createUnsupportedKeys: {
     code: `${Errors.Create.UC_CODE}/unsupportedKeys`
+  },
+  listUnsupportedKeys: {
+    code: `${Errors.List.UC_CODE}/unsupportedKeys`
   }
 };
 
@@ -20,7 +23,7 @@ class SceneAbl {
   }
 
   async create(ucEnv) {
-    logger.debug("Validating input")
+    logger.debug("Validating CreateScene input")
     let dtoIn = ucEnv.getDtoIn();
     let validationResult = this.validator.validate("sceneCreateDtoInType", dtoIn);
     let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.createUnsupportedKeys.code, Errors.Create.invalidDtoIn);
@@ -28,7 +31,6 @@ class SceneAbl {
     dtoIn  = {...dtoIn, ...{
       awid: ucEnv.getUri().getAwid(),
       name: "",
-      ordinalNumber: await this.dao.getActSceneCount(dtoIn.actId) + 1,
       description: "",
       publicDescription: "",
       directorId: ucEnv.getSession().getIdentity().getUuIdentity(),
@@ -45,7 +47,26 @@ class SceneAbl {
       }
       throw e;
     }
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+    return dtoOut;
+  }
 
+  async list(ucEnv) {
+    logger.debug("Validating SceneList input");
+    let dtoIn = ucEnv.getDtoIn();
+    let validationResult = this.validator.validate("sceneListDtoInType", dtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.listUnsupportedKeys.code, Errors.List.invalidDtoIn);
+
+    let dtoOut;
+    try {
+      logger.debug("Going to get scene list");
+      dtoOut = await this.dao.list(ucEnv.getUri().getAwid(), dtoIn.actId, dtoIn.pageInfo);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        throw new Errors.List.SceneDaoListFailed({uuAppErrorMap}, e)
+      }
+      throw e;
+    }
     dtoOut.uuAppErrorMap = uuAppErrorMap;
     return dtoOut;
   }

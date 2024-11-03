@@ -7,6 +7,10 @@ class SceneController {
     return SceneAbl.create(ucEnv);
   }
 
+  list(ucEnv) {
+    return SceneAbl.list(ucEnv);
+  }
+
 }
 
 module.exports = new SceneController();

@@ -33,6 +33,10 @@
       "scene/create": {
         "sysStateList": ["active"],
         "profileList": ["Public"]
+      },
+      "scene/list": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
       }
     }
   }
