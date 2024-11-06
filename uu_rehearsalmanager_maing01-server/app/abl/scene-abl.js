@@ -34,6 +34,7 @@ class SceneAbl {
       description: "",
       publicDescription: "",
       directorId: ucEnv.getSession().getIdentity().getUuIdentity(),
+      directorName: ucEnv.getSession().getIdentity().getName(),
       characterList: []
     }}
 
