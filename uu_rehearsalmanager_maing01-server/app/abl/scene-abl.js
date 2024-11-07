@@ -12,6 +12,9 @@ const WARNINGS = {
   },
   listUnsupportedKeys: {
     code: `${Errors.List.UC_CODE}/unsupportedKeys`
+  },
+  updateUnsupportedKeys: {
+    code: `${Errors.Update.UC_CODE}/unsupportedKeys`
   }
 };
 
@@ -36,7 +39,7 @@ class SceneAbl {
       directorId: ucEnv.getSession().getIdentity().getUuIdentity(),
       directorName: ucEnv.getSession().getIdentity().getName(),
       characterList: []
-    }}
+    }};
 
     let dtoOut;
     try {
@@ -72,6 +75,30 @@ class SceneAbl {
     return dtoOut;
   }
 
+  async update(ucEnv) {
+    logger.debug("Validating SceneUpdate input");
+    let dtoIn = ucEnv.getDtoIn();
+    let validationResult = this.validator.validate("sceneUpdateDtoInType", dtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.updateUnsupportedKeys.code, Errors.Update.invalidDtoIn);
+
+    dtoIn  = {...dtoIn, ...{
+        awid: ucEnv.getUri().getAwid()
+    }};
+
+    let dtoOut;
+    try {
+      logger.debug("Going to update scene");
+      // todo check if actors exist (if uuIdentity has permission "Actor" in permissions collection) implement in Authorization task
+      dtoOut = await this.dao.update(dtoIn);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        throw new Errors.Update.SceneDaoUpdateFailed({uuAppErrorMap}, e)
+      }
+      throw e;
+    }
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+    return dtoOut;
+  }
 }
 
 module.exports = new SceneAbl();

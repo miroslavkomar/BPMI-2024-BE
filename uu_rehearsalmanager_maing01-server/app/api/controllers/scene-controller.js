@@ -11,6 +11,10 @@ class SceneController {
     return SceneAbl.list(ucEnv);
   }
 
+  update(ucEnv) {
+    return SceneAbl.update(ucEnv);
+  }
+
 }
 
 module.exports = new SceneController();

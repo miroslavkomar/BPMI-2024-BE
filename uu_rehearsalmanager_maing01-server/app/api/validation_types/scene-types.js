@@ -11,3 +11,14 @@ const sceneListDtoInType = shape({
     pageSize: integer()
   })
 });
+
+const sceneUpdateDtoInType = shape({
+  id: id().isRequired(),
+  name: string(1, 255),
+  description: string(1, 4000),
+  publicDescription: string(1, 4000),
+  characterList: array(shape({
+    name: string(1, 255),
+    actorList: array(string(30), 0, 10)
+  }), 0, 50)
+});

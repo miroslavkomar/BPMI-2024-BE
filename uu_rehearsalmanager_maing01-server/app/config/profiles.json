@@ -37,6 +37,10 @@
       "scene/list": {
         "sysStateList": ["active"],
         "profileList": ["Public"]
+      },
+      "scene/update": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
       }
     }
   }

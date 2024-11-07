@@ -39,7 +39,27 @@ const List = {
   }
 }
 
+const Update = {
+  UC_CODE: `${RehearsalmanagerMainUseCaseError.ERROR_PREFIX}/scene/update`,
+
+  invalidDtoIn: class extends RehearsalmanagerMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Update.UC_CODE}/invalidDtoIn`;
+      this.message = 'DtoIn is not valid.';
+    }
+  },
+  SceneDaoUpdateFailed: class extends RehearsalmanagerMainUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Update.UC_CODE}/sceneDaoUpdateFailed`;
+      this.message = 'Updating scene failed';
+    }
+  }
+}
+
 module.exports = {
   Create,
-  List
+  List,
+  Update
 }
