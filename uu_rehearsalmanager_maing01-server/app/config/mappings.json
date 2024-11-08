@@ -45,6 +45,21 @@
         "realization": "api/controllers/SceneController.update",
         "httpMethod": "POST",
         "type": "CMD"
+      },
+      "rehersal/create": {
+        "realization": "api/controllers/RehersalController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "rehersal/list": {
+        "realization": "api/controllers/RehersalController.list",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "rehersal/update": {
+        "realization": "api/controllers/RehersalController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
       }
     }
   }

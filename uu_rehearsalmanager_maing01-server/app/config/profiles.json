@@ -41,6 +41,18 @@
       "scene/update": {
         "sysStateList": ["active"],
         "profileList": ["Public"]
+      },
+      "rehersal/create": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "rehersal/list": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "rehersal/update": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
       }
     }
   }

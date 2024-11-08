@@ -1,0 +1,104 @@
+"use strict";
+const {DaoFactory, ObjectStoreError} = require("uu_appg01_server").ObjectStore;
+const { LoggerFactory } = require("uu_appg01_server").Logging;
+const {Validator} = require("uu_appg01_server").Validation;
+const {ValidationHelper} = require("uu_appg01_server").AppServer;
+const Errors = require("../api/errors/rehersal-error.js");
+const logger = LoggerFactory.get("RehersalAbl");
+
+const WARNINGS = {
+  createUnsupportedKeys: {
+    code: `${Errors.Create.UC_CODE}/unsupportedKeys`
+  },
+  listUnsupportedKeys: {
+    code: `${Errors.List.UC_CODE}/unsupportedKeys`
+  },
+  updateUnsupportedKeys: {
+    code: `${Errors.Update.UC_CODE}/unsupportedKeys`
+  }
+};
+
+class RehersalAbl {
+
+  constructor() {
+    this.validator = Validator.load();
+    this.dao = DaoFactory.getDao("rehersal");
+  }
+
+  async create(ucEnv) {
+    logger.debug("Validating CreateRehersal input")
+    let dtoIn = ucEnv.getDtoIn();
+    let validationResult = this.validator.validate("rehersalCreateDtoInType", dtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.createUnsupportedKeys.code, Errors.Create.invalidDtoIn);
+
+    dtoIn  = {...dtoIn, ...{
+      awid: ucEnv.getUri().getAwid(),
+      name: "",
+      description: "",
+      publicDescription: "",
+      directorId: ucEnv.getSession().getIdentity().getUuIdentity(),
+      directorName: ucEnv.getSession().getIdentity().getName(),
+      characterList: []
+    }};
+
+    let dtoOut;
+    try {
+      logger.debug("Going to create rehersal");
+      dtoOut = await this.dao.create(dtoIn);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        throw new Errors.Create.RehersalDaoCreateFailed({uuAppErrorMap}, e)
+      }
+      throw e;
+    }
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+    return dtoOut;
+  }
+
+  async list(ucEnv) {
+    logger.debug("Validating RehersalList input");
+    let dtoIn = ucEnv.getDtoIn();
+    let validationResult = this.validator.validate("rehersalListDtoInType", dtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.listUnsupportedKeys.code, Errors.List.invalidDtoIn);
+
+    let dtoOut;
+    try {
+      logger.debug("Going to get rehersal list");
+      dtoOut = await this.dao.list(ucEnv.getUri().getAwid(), dtoIn.actId, dtoIn.pageInfo);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        throw new Errors.List.RehersalDaoListFailed({uuAppErrorMap}, e)
+      }
+      throw e;
+    }
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+    return dtoOut;
+  }
+
+  async update(ucEnv) {
+    logger.debug("Validating RehersalUpdate input");
+    let dtoIn = ucEnv.getDtoIn();
+    let validationResult = this.validator.validate("rehersalUpdateDtoInType", dtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.updateUnsupportedKeys.code, Errors.Update.invalidDtoIn);
+
+    dtoIn  = {...dtoIn, ...{
+        awid: ucEnv.getUri().getAwid()
+    }};
+
+    let dtoOut;
+    try {
+      logger.debug("Going to update rehersal");
+      // todo check if actors exist (if uuIdentity has permission "Actor" in permissions collection) implement in Authorization task
+      dtoOut = await this.dao.update(dtoIn);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        throw new Errors.Update.RehersalDaoUpdateFailed({uuAppErrorMap}, e)
+      }
+      throw e;
+    }
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+    return dtoOut;
+  }
+}
+
+module.exports = new RehersalAbl();
