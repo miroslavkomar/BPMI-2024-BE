@@ -8,8 +8,8 @@ class LocationMongo extends UuObjectDao {
         await super.createIndex( { awid: 1, actId: 1});
     }
 
-    async list(awid, pageInfo) {
-        return super.find({awid: awid}, pageInfo, {"sys.cts": 1});
+    async list(awid, active, pageInfo) {
+        return super.find({awid: awid, active: active}, pageInfo, {"sys.cts": 1});
     }
 }
 

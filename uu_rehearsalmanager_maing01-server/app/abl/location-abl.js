@@ -29,7 +29,7 @@ class LocationAbl {
         let dtoOut;
         try {
             logger.debug("Going to get location list");
-            dtoOut = await this.dao.list(ucEnv.getUri().getAwid(), dtoIn.pageInfo);
+            dtoOut = await this.dao.list(ucEnv.getUri().getAwid(), dtoIn.active, dtoIn.pageInfo);
         } catch (e) {
             if (e instanceof ObjectStoreError) {
                 throw new Errors.List.LocationDaoListFailed({uuAppErrorMap}, e);
