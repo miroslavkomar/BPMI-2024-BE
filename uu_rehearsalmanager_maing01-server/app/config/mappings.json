@@ -30,6 +30,11 @@
         "realization": "api-console.html",
         "httpMethod": "GET",
         "type": "UVE"
+      },
+      "location/list": {
+        "realization": "api/controllers/LocationController.list",
+        "httpMethod": "GET",
+        "type": "CMD"
       }
     }
   }
