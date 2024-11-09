@@ -6,6 +6,10 @@
       "schemaMap": {
         "rehearsalmanagerMain": {
           "realization": "dao/RehearsalmanagerMainMongo"
+        },
+        "location": {
+          "realization": "dao/LocationMongo",
+          "maxNoi": 1000
         }
       }
     }

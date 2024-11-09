@@ -29,6 +29,10 @@
       "sys/uuAppWorkspace/apiConsole": {
         "sysStateList": ["created", "assigned", "active", "restricted", "readOnly", "closed", "suspended"],
         "profileList": ["Authenticated"]
+      },
+      "location/list": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
       }
     }
   }
