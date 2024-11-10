@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 const locationListDtoInType = shape({
-    active: oneOf(["true", "false"]).isRequired(),
+    active: oneOf(["true", "false"]),
     pageInfo: shape({
         pageIndex: integer(),
         pageSize: integer()
