@@ -51,7 +51,7 @@ class LocationAbl {
 
         //dtoIn needs name, address
         dtoIn = {...dtoIn, ...{
-            awid: ucEnv.getUri().geAwid(),
+            awid: ucEnv.getUri().getAwid(),
             sys: {
                 cts: new Date(),
                 mts: new Date(),
