@@ -20,6 +20,25 @@ const List = {
     }
 }
 
+const Create = {
+    UC_CODE: `${RehearsalmanagerMainUseCaseError.ERROR_PREFIX}/location/create`,
+    
+    invalidDtoIn: class extends RehearsalmanagerMainUseCaseError {
+        constructor() {
+            super(...arguments);
+            this.code = `${Create.UC_CODE}/invalidDtoIn`;
+            this.message = "DtoIn is not valid.";
+        }
+    },
+    LocationDaoCreateFailed: class extends RehearsalmanagerMainUseCaseError {
+        constructor() {
+            super(...arguments);
+            this.code = `${Create.UC_CODE}/locationDaoCreateFailed`;
+            this.message = "Creating location failed.";
+        }
+    }
+}
+
 module.exports = {
   List,
 }

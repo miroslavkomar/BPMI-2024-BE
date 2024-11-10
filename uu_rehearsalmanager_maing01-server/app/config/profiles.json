@@ -33,6 +33,10 @@
       "location/list": {
         "sysStateList": ["active"],
         "profileList": ["Public"]
+      },
+      "location/create": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
       }
     }
   }

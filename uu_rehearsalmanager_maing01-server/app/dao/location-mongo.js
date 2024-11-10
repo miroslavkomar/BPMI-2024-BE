@@ -11,6 +11,10 @@ class LocationMongo extends UuObjectDao {
     async list(awid, active, pageInfo) {
         return super.find({awid: awid, active: active}, pageInfo, {"sys.cts": 1});
     }
+
+    async create(location){
+        return super.insertOne(location);
+    }
 }
 
 module.exports = LocationMongo;

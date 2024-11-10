@@ -8,6 +8,10 @@ class LocationController {
     return LocationAbl.list(ucEnv);
   }
 
+  create(ucEnv) {
+    return LocationAbl.create(ucEnv);
+  }
+
 }
 
 module.exports = new LocationController();

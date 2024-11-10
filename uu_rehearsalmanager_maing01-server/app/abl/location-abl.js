@@ -10,6 +10,9 @@ const logger = LoggerFactory.get("LocationAbl");
 const WARNINGS = {
     listUnsupportedKeys: {
         code: `${Errors.List.UC_CODE}/unsupportedKeys`
+    },
+    createUnsupportedKeys: {
+        code: `${Errors.Create.UC_CODE}/unsupportedKeys`
     }
 }
 
@@ -38,6 +41,35 @@ class LocationAbl {
         }
         dtoOut.uuAppErrorMap = uuAppErrorMap;
         return dtoOut;
+    }
+
+    async create(ucEnv) {
+        logger.debug("Validating LocationCreate input");
+        let dtoIn = ucEnv.getDtoIn();
+        let validationResult = this.validator.validate("locationCreateDtoInType", dtoIn);
+        let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.createUnsupportedKeys.code, Errors.Create.invalidDtoIn);
+
+        //dtoIn needs name, address
+        dtoIn = {...dtoIn, ...{
+            awid: ucEnv.getUri().geAwid(),
+            sys: {
+                cts: new Date(),
+                mts: new Date(),
+                rev: 0
+            }
+        }};
+
+        let dtoOut;
+        try {
+            logger.debug("Going to create location");
+            dtoOut = await this.dao.create(dtoIn);
+        } catch (e) {
+            if (e instanceof ObjectStoreError) {
+                throw new Errors.Create.LocationDaoCreateFailed({uuAppErrorMap}, e);
+            }
+            dtoOut.uuAppErrorMap = uuAppErrorMap;
+            return dtoOut;
+        }
     }
 }
 
