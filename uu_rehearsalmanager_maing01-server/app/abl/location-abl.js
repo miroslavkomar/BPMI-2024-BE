@@ -49,15 +49,7 @@ class LocationAbl {
         let validationResult = this.validator.validate("locationCreateDtoInType", dtoIn);
         let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.createUnsupportedKeys.code, Errors.Create.invalidDtoIn);
 
-        //dtoIn needs name, address
-        dtoIn = {...dtoIn, ...{
-            awid: ucEnv.getUri().getAwid(),
-            sys: {
-                cts: new Date(),
-                mts: new Date(),
-                rev: 0
-            }
-        }};
+        dtoIn = {...dtoIn, ...{ awid: ucEnv.getUri().getAwid() }};
 
         let dtoOut;
         try {
