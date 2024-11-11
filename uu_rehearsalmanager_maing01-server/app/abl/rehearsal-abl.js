@@ -33,9 +33,9 @@ class RehearsalAbl {
 
     dtoIn  = {...dtoIn, ...{
       awid: ucEnv.getUri().getAwid(),
-      date: "",
-      sceneList: [],
-      valid: "",
+      date: dtoIn.date ? dtoIn.date : "",
+      sceneList: dtoIn.sceneList ? dtoIn.sceneList : [],
+      valid: "true",
       presenceList: []
     }};
 
