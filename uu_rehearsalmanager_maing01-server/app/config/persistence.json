@@ -10,6 +10,10 @@
         "scene": {
           "realization": "dao/SceneMongo",
           "maxNoi": 1000
+        },
+        "rehearsal": {
+          "realization": "dao/RehearsalMongo",
+          "MaxNoi": 1000
         }
       }
     }

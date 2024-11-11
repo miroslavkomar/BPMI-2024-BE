@@ -42,15 +42,15 @@
         "sysStateList": ["active"],
         "profileList": ["Public"]
       },
-      "rehersal/create": {
+      "rehearsal/create": {
         "sysStateList": ["active"],
         "profileList": ["Public"]
       },
-      "rehersal/list": {
+      "rehearsal/list": {
         "sysStateList": ["active"],
         "profileList": ["Public"]
       },
-      "rehersal/update": {
+      "rehearsal/update": {
         "sysStateList": ["active"],
         "profileList": ["Public"]
       }

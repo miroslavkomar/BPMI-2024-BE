@@ -46,18 +46,18 @@
         "httpMethod": "POST",
         "type": "CMD"
       },
-      "rehersal/create": {
-        "realization": "api/controllers/RehersalController.create",
+      "rehearsal/create": {
+        "realization": "api/controllers/RehearsalController.create",
         "httpMethod": "POST",
         "type": "CMD"
       },
-      "rehersal/list": {
-        "realization": "api/controllers/RehersalController.list",
+      "rehearsal/list": {
+        "realization": "api/controllers/RehearsalController.list",
         "httpMethod": "GET",
         "type": "CMD"
       },
-      "rehersal/update": {
-        "realization": "api/controllers/RehersalController.update",
+      "rehearsal/update": {
+        "realization": "api/controllers/RehearsalController.update",
         "httpMethod": "POST",
         "type": "CMD"
       }
