@@ -31,6 +31,21 @@
         "httpMethod": "GET",
         "type": "UVE"
       },
+      "scene/create": {
+        "realization": "api/controllers/SceneController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "scene/list": {
+        "realization": "api/controllers/SceneController.list",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "scene/update": {
+        "realization": "api/controllers/SceneController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
       "location/list": {
         "realization": "api/controllers/LocationController.list",
         "httpMethod": "GET",
