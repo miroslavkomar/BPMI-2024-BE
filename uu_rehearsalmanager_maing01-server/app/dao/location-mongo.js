@@ -9,7 +9,7 @@ class LocationMongo extends UuObjectDao {
     }
 
     async list(awid, active, pageInfo) {
-        if(active){
+        if(active !== undefined){
             return super.find({awid: awid, active: active}, pageInfo, {"sys.cts": 1});
         } else {
             return super.find({awid: awid}, pageInfo, {"sys.cts": 1});
