@@ -49,6 +49,18 @@
       "location/create": {
         "sysStateList": ["active"],
         "profileList": ["Public"]
+      },
+      "rehearsal/create": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "rehearsal/list": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "rehearsal/update": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
       }
     }
   }

@@ -55,6 +55,21 @@
         "realization": "api/controllers/LocationController.create",
         "httpMethod": "POST",
         "type": "CMD"
+      },
+      "rehearsal/create": {
+        "realization": "api/controllers/RehearsalController.create",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
+      "rehearsal/list": {
+        "realization": "api/controllers/RehearsalController.list",
+        "httpMethod": "GET",
+        "type": "CMD"
+      },
+      "rehearsal/update": {
+        "realization": "api/controllers/RehearsalController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
       }
     }
   }
