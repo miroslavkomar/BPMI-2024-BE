@@ -46,6 +46,11 @@
         "httpMethod": "POST",
         "type": "CMD"
       },
+      "scene/delete": {
+        "realization": "api/controllers/SceneController.delete",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
       "location/list": {
         "realization": "api/controllers/LocationController.list",
         "httpMethod": "GET",

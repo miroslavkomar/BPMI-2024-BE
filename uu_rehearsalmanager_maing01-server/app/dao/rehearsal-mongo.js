@@ -10,8 +10,19 @@ class RehearsalMongo extends UuObjectDao {
     return super.insertOne(rehearsal);
   }
 
-  async list(awid, sceneIds, isValid, pageInfo) {
-    return super.find({awid: awid, sceneList: {$in: sceneIds}, valid: isValid}, pageInfo, {"sys.cts": 1});
+  async list(awid, sceneIds, isValid, dateFrom, dateTo, pageInfo) {
+    const filter = {
+      awid: awid,
+      ...sceneIds.length > 0 && {sceneList: {$in: sceneIds}},
+      valid: isValid,
+      ...((dateFrom || dateTo) && {
+        date: {
+          ...(dateFrom && {$gte: dateFrom}),
+          ...(dateTo && {$lte: dateTo})
+        }
+      }),
+    };
+    return super.find(filter, pageInfo, {"sys.cts": 1});
   }
 
   async update(rehearsal) {

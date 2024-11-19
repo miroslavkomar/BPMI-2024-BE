@@ -1,17 +1,17 @@
 "use strict";
-const RehearsalmanagerMainUseCaseError = require("./rehearsalmanager-main-use-case-error.js");
+const RehearsalmanagerRehearsalUseCaseError = require("./rehearsalmanager-rehearsal-use-case-error.js");
 
 const Create = {
-  UC_CODE: `${RehearsalmanagerMainUseCaseError.ERROR_PREFIX}/rehearsal/create`,
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}rehearsal/create`,
 
-  invalidDtoIn: class extends RehearsalmanagerMainUseCaseError {
+  invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${Create.UC_CODE}/invalidDtoIn`;
       this.message = 'DtoIn is not valid.';
     }
   },
-  RehearsalDaoCreateFailed: class extends RehearsalmanagerMainUseCaseError {
+  RehearsalDaoCreateFailed: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${Create.UC_CODE}/rehearsalDaoCreateFailed`;
@@ -21,16 +21,16 @@ const Create = {
 }
 
 const List = {
-  UC_CODE: `${RehearsalmanagerMainUseCaseError.ERROR_PREFIX}/rehearsal/list`,
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}rehearsal/list`,
 
-  invalidDtoIn: class extends RehearsalmanagerMainUseCaseError {
+  invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${List.UC_CODE}/invalidDtoIn`;
       this.message = 'DtoIn is not valid.';
     }
   },
-  RehearsalDaoListFailed: class extends RehearsalmanagerMainUseCaseError {
+  RehearsalDaoListFailed: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${List.UC_CODE}/rehearsalDaoListFailed`;
@@ -40,16 +40,16 @@ const List = {
 }
 
 const Update = {
-  UC_CODE: `${RehearsalmanagerMainUseCaseError.ERROR_PREFIX}/rehearsal/update`,
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}rehearsal/update`,
 
-  invalidDtoIn: class extends RehearsalmanagerMainUseCaseError {
+  invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${Update.UC_CODE}/invalidDtoIn`;
       this.message = 'DtoIn is not valid.';
     }
   },
-  RehearsalDaoUpdateFailed: class extends RehearsalmanagerMainUseCaseError {
+  RehearsalDaoUpdateFailed: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${Update.UC_CODE}/rehearsalDaoUpdateFailed`;

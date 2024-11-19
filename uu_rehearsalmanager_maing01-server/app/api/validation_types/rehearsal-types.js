@@ -2,9 +2,9 @@
 
 const rehearsalCreateDtoInType = shape({
   locationId: string(1, 128).isRequired(),
-  date: date(),
+  date: datetime(),
   sceneList: array(string(1, 128)),
-  presenceList: array(string(30), 0, 10)
+  presenceList: array(uuIdentity(), 0, 10)
 });
 
 const rehearsalListDtoInType = shape({
@@ -16,8 +16,8 @@ const rehearsalListDtoInType = shape({
 
 const rehearsalUpdateDtoInType = shape({
   id: id().isRequired(),
-  date: date(),
+  date: datetime(),
   valid: boolean(),
   sceneList: array(string(1, 128)),
-  presenceList: array(string(30), 0, 10),
+  presenceList: array(uuIdentity(), 0, 10),
 });

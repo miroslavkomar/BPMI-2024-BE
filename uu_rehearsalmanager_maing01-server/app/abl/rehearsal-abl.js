@@ -36,7 +36,7 @@ class RehearsalAbl {
       awid: ucEnv.getUri().getAwid(),
       date: dtoIn.date ? dtoIn.date : "",
       sceneList: dtoIn.sceneList ? dtoIn.sceneList : [],
-      valid: "true",
+      valid: true,
       presenceList: []
     }};
 
@@ -72,7 +72,7 @@ class RehearsalAbl {
       logger.debug("Going to get rehearsal list");
       // TODO invalid rehearsals can be listed by ORGANISER
       let isValid = true;
-      dtoOut = await this.dao.list(awid, sceneIds, isValid, dtoIn.pageInfo);
+      dtoOut = await this.dao.list(awid, sceneIds, isValid, null, null, dtoIn.pageInfo);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         throw new Errors.List.RehearsalDaoListFailed({uuAppErrorMap}, e)

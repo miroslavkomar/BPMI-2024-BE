@@ -26,6 +26,14 @@ class SceneMongo extends UuObjectDao {
     return await super.findOneAndUpdate(filter, scene, "NONE");
   }
 
+  async delete(awid, id){
+    let filter = {
+      awid: awid,
+      id: id,
+    };
+    await super.deleteOne(filter)
+  }
+
 }
 
 module.exports = SceneMongo;
