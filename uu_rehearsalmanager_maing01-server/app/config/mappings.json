@@ -75,6 +75,11 @@
         "realization": "api/controllers/RehearsalController.update",
         "httpMethod": "POST",
         "type": "CMD"
+      },
+      "actor/list": {
+        "realization": "api/controllers/ActorController.list",
+        "httpMethod": "GET",
+        "type": "CMD"
       }
     }
   }

@@ -5,7 +5,7 @@
     }
   },
   "*": {
-    "profileList": ["Authorities", "Executives", "AwidLicenseOwner", "Public", "Authenticated", "AwidInitiator"],
+    "profileList": ["Authorities", "Executives", "AwidLicenseOwner", "Public", "Authenticated", "AwidInitiator", "Directors", "Actors", "Organizers"],
     "useCaseMap": {
       "sys/uuAppWorkspace/init": {
         "sysStateList": ["created", "assigned"],
@@ -63,6 +63,10 @@
         "profileList": ["Public"]
       },
       "rehearsal/update": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
+      "actor/list": {
         "sysStateList": ["active"],
         "profileList": ["Public"]
       }
