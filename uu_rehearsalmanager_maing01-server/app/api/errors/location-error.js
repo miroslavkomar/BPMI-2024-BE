@@ -3,7 +3,7 @@
 const RehearsalmanagerLocationUseCaseError = require("./rehearsalmanager-location-use-case-error.js");
 
 const List = {
-    UC_CODE: `${RehearsalmanagerLocationUseCaseError.ERROR_PREFIX}location/list`,
+    UC_CODE: `${RehearsalmanagerLocationUseCaseError.ERROR_PREFIX}list`,
     invalidDtoIn: class extends RehearsalmanagerLocationUseCaseError {
         constructor() {
             super(...arguments);
@@ -21,7 +21,7 @@ const List = {
 }
 
 const Create = {
-    UC_CODE: `${RehearsalmanagerLocationUseCaseError.ERROR_PREFIX}location/create`,
+    UC_CODE: `${RehearsalmanagerLocationUseCaseError.ERROR_PREFIX}create`,
 
     invalidDtoIn: class extends RehearsalmanagerLocationUseCaseError {
         constructor() {
