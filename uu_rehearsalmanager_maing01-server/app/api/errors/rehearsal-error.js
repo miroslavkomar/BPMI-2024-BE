@@ -58,8 +58,28 @@ const Update = {
   }
 }
 
+const MemberList = {
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}rehearsal/member/list`,
+
+  invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${MemberList.UC_CODE}/invalidDtoIn`;
+      this.message = 'DtoIn is not valid.';
+    }
+  },
+  RehearsalDaoGetFailed: class extends RehearsalmanagerRehearsalUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${MemberList.UC_CODE}/rehearsalDaoGetFailed`;
+      this.message = 'Getting rehearsal failed';
+    }
+  }
+}
+
 module.exports = {
   Create,
   List,
-  Update
+  Update,
+  MemberList
 }

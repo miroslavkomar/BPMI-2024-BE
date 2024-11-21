@@ -66,6 +66,10 @@
         "sysStateList": ["active"],
         "profileList": ["Public"]
       },
+      "rehearsal/member/list": {
+        "sysStateList": ["active"],
+        "profileList": ["Public"]
+      },
       "actor/list": {
         "sysStateList": ["active"],
         "profileList": ["Public"]

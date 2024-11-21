@@ -1,5 +1,6 @@
 "use strict";
 const { UuObjectDao } = require("uu_appg01_server").ObjectStore;
+const { ObjectId } = require("mongodb");
 
 class SceneMongo extends UuObjectDao {
   async createSchema() {
@@ -12,6 +13,14 @@ class SceneMongo extends UuObjectDao {
 
   async list(awid, actId, pageInfo) {
     return super.find({awid: awid, actId: actId}, pageInfo, {"sys.cts": 1});
+  }
+
+  async list(awid, sceneIds) {
+    const filter = {
+      awid: awid,
+      ...sceneIds.length > 0 && {_id: {$in: sceneIds.map((id) => new ObjectId(id))}}
+    };
+    return super.find(filter)
   }
 
   async listByUser(awid, uuIdentity, pageInfo) {
