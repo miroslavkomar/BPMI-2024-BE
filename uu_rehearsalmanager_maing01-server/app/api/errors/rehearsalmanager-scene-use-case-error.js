@@ -3,7 +3,7 @@ const { UseCaseError } = require("uu_appg01_server").AppServer;
 
 class RehearsalmanagerSceneUseCaseError extends UseCaseError {
   static get ERROR_PREFIX() {
-    return "uu-rehearsalmanager-location/";
+    return "uu-rehearsalmanager-scene/";
   }
 
   constructor(dtoOut, paramMap = {}, cause = null) {
