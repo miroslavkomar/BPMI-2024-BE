@@ -23,8 +23,8 @@ class SceneMongo extends UuObjectDao {
     return super.find(filter)
   }
 
-  async listByUser(awid, uuIdentity, pageInfo) {
-    return super.find({awid: awid, $or: [{directorId: uuIdentity}, {"characterList.actorList": uuIdentity}]}, pageInfo, {"sys.cts": 1});
+  async listByUser(awid, uuIdentity) {
+    return super.find({awid: awid, $or: [{directorId: uuIdentity}, {"characterList.actorList": uuIdentity}]}, {"sys.cts": 1});
   }
 
   async update(scene) {
