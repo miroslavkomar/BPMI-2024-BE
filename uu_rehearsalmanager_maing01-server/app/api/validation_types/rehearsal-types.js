@@ -21,3 +21,7 @@ const rehearsalUpdateDtoInType = shape({
   sceneList: array(string(1, 128)),
   presenceList: array(uuIdentity(), 0, 10),
 });
+
+const rehearsalMemberListDtoInType = shape({
+  id: id().isRequired()
+});

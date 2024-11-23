@@ -10,6 +10,15 @@ class RehearsalMongo extends UuObjectDao {
     return super.insertOne(rehearsal);
   }
 
+  async get(rehearsal) {
+    const filter = {
+      awid: rehearsal.awid,
+      id: rehearsal.id,
+    };
+
+    return super.findOne(filter);
+  }
+
   async list(awid, sceneIds, isValid, dateFrom, dateTo, pageInfo) {
     const filter = {
       awid: awid,

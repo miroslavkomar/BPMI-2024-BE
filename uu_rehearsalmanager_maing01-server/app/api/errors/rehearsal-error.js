@@ -2,7 +2,7 @@
 const RehearsalmanagerRehearsalUseCaseError = require("./rehearsalmanager-rehearsal-use-case-error.js");
 
 const Create = {
-  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}rehearsal/create`,
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}create`,
 
   invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
@@ -21,7 +21,7 @@ const Create = {
 }
 
 const List = {
-  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}rehearsal/list`,
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}list`,
 
   invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
@@ -40,7 +40,7 @@ const List = {
 }
 
 const Update = {
-  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}rehearsal/update`,
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}update`,
 
   invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
@@ -58,8 +58,28 @@ const Update = {
   }
 }
 
+const MemberList = {
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}member/list`,
+
+  invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${MemberList.UC_CODE}/invalidDtoIn`;
+      this.message = 'DtoIn is not valid.';
+    }
+  },
+  RehearsalDaoGetFailed: class extends RehearsalmanagerRehearsalUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${MemberList.UC_CODE}/rehearsalDaoGetFailed`;
+      this.message = 'Getting rehearsal failed';
+    }
+  }
+}
+
 module.exports = {
   Create,
   List,
-  Update
+  Update,
+  MemberList
 }

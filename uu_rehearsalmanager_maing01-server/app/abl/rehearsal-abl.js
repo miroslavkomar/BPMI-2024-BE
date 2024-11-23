@@ -15,6 +15,9 @@ const WARNINGS = {
   },
   updateUnsupportedKeys: {
     code: `${Errors.Update.UC_CODE}/unsupportedKeys`
+  },
+  memberListUnsupportedKeys: {
+    code: `${Errors.MemberList.UC_CODE}/unsupportedKeys`
   }
 };
 
@@ -112,6 +115,36 @@ class RehearsalAbl {
     dtoOut.uuAppErrorMap = uuAppErrorMap;
     return dtoOut;
   }
+
+  async memberList(ucEnv) {
+    logger.debug("Validating RehearsalMemberList input");
+    let dtoIn = ucEnv.getDtoIn();
+    let validationResult = this.validator.validate("rehearsalMemberListDtoInType", dtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.memberListUnsupportedKeys.code, Errors.MemberList.invalidDtoIn);
+
+    dtoIn  = {...dtoIn, ...{
+        awid: ucEnv.getUri().getAwid()
+    }};
+
+    let dtoOut = {};
+    try {
+      logger.debug("Going to get MemberList of rehearsal");
+      const rehearsal = await this.dao.get(dtoIn);
+      const sceneList = await this.sceneDao.list(dtoIn.awid, rehearsal.sceneList);
+      dtoOut.itemList = [...new Set(sceneList.itemList.flatMap(item => [
+        item.directorId,
+        ...item.characterList.flatMap(character => character.actorList)
+      ]))];
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        throw new Errors.MemberList.RehearsalDaoGetFailed({uuAppErrorMap}, e)
+      }
+      throw e;
+    }
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+    return dtoOut;
+  }
+
 }
 
 module.exports = new RehearsalAbl();

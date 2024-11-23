@@ -2,7 +2,7 @@
 const RehearsalmanagerSceneUseCaseError = require("./rehearsalmanager-scene-use-case-error.js");
 
 const Create = {
-  UC_CODE: `${RehearsalmanagerSceneUseCaseError.ERROR_PREFIX}scene/create`,
+  UC_CODE: `${RehearsalmanagerSceneUseCaseError.ERROR_PREFIX}create`,
 
   invalidDtoIn: class extends RehearsalmanagerSceneUseCaseError {
     constructor() {
@@ -21,7 +21,7 @@ const Create = {
 }
 
 const List = {
-  UC_CODE: `${RehearsalmanagerSceneUseCaseError.ERROR_PREFIX}scene/list`,
+  UC_CODE: `${RehearsalmanagerSceneUseCaseError.ERROR_PREFIX}list`,
 
   invalidDtoIn: class extends RehearsalmanagerSceneUseCaseError {
     constructor() {
@@ -40,7 +40,7 @@ const List = {
 }
 
 const Update = {
-  UC_CODE: `${RehearsalmanagerSceneUseCaseError.ERROR_PREFIX}scene/update`,
+  UC_CODE: `${RehearsalmanagerSceneUseCaseError.ERROR_PREFIX}update`,
 
   invalidDtoIn: class extends RehearsalmanagerSceneUseCaseError {
     constructor() {
@@ -66,7 +66,7 @@ const Update = {
 }
 
 const Delete = {
-  UC_CODE: `${RehearsalmanagerSceneUseCaseError.ERROR_PREFIX}scene/delete`,
+  UC_CODE: `${RehearsalmanagerSceneUseCaseError.ERROR_PREFIX}delete`,
 
   invalidDtoIn: class extends RehearsalmanagerSceneUseCaseError {
     constructor() {
