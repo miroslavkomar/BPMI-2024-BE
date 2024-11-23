@@ -3,7 +3,7 @@
 const rehearsalCreateDtoInType = shape({
   locationId: string(1, 128).isRequired(),
   date: datetime(),
-  sceneList: array(string(1, 128)),
+  actId: string(1, 128),
   presenceList: array(uuIdentity(), 0, 10)
 });
 

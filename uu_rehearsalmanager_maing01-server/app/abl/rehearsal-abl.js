@@ -35,13 +35,19 @@ class RehearsalAbl {
     dtoIn  = {...dtoIn, ...{
       awid: ucEnv.getUri().getAwid(),
       date: dtoIn.date ? dtoIn.date : "",
-      sceneList: dtoIn.sceneList ? dtoIn.sceneList : [],
-      valid: true,
+      sceneList: [],
+      valid: false,
       presenceList: []
     }};
 
     let dtoOut;
     try {
+      let scenes = await this.sceneDao.list(dtoIn.awid, dtoIn.actId);
+      let sceneList = [];
+      for (const scene of scenes.itemList) {
+        sceneList.push(scene.id);
+      }
+      dtoIn.sceneList = sceneList;
       logger.debug("Going to create rehearsal");
       dtoOut = await this.dao.create(dtoIn);
     } catch (e) {
@@ -66,7 +72,7 @@ class RehearsalAbl {
       const uuIdentity = ucEnv.getSession().getIdentity().getUuIdentity();
       const awid = ucEnv.getUri().getAwid();
 
-      let scenesWhereUserActorOrDirector = await this.sceneDao.listByUser(awid, uuIdentity, dtoIn.pageInfo)
+      let scenesWhereUserActorOrDirector = await this.sceneDao.listByUser(awid, uuIdentity)
       const sceneIds = scenesWhereUserActorOrDirector.itemList.map(item => item.id.toString());
 
       logger.debug("Going to get rehearsal list");
