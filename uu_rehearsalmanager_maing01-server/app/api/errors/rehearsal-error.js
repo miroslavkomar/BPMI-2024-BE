@@ -72,7 +72,7 @@ const MemberList = {
     constructor() {
       super(...arguments);
       this.code = `${MemberList.UC_CODE}/rehearsalDaoGetFailed`;
-      this.message = 'Getting rehearsal failed';
+      this.message = 'Getting rehearsal member list failed';
     }
   }
 }
