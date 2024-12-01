@@ -130,7 +130,7 @@ class RehearsalAbl {
     try {
       logger.debug("Going to get MemberList of rehearsal");
       const rehearsal = await this.dao.get(dtoIn);
-      const sceneList = await this.sceneDao.list(dtoIn.awid, rehearsal.sceneList);
+      const sceneList = await this.sceneDao.listById(dtoIn.awid, rehearsal.sceneList);
       dtoOut.itemList = [...new Set(sceneList.itemList.flatMap(item => [
         item.directorId,
         ...item.characterList.flatMap(character => character.actorList)
