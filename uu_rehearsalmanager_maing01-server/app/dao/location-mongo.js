@@ -18,6 +18,16 @@ class LocationMongo extends UuObjectDao {
     async create(location){
         return super.insertOne(location);
     }
+
+    async update(location){
+        const { id, awid, ...locationData } = location;
+        let filter = {
+            awid: awid,
+            id: id
+        };
+
+        return await super.findOneAndUpdate(filter, locationData, "NONE");
+    }
 }
 
 module.exports = LocationMongo;

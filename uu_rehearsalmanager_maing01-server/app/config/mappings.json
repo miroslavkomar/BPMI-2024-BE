@@ -61,6 +61,11 @@
         "httpMethod": "POST",
         "type": "CMD"
       },
+      "location/update": {
+        "realization": "api/controllers/LocationController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
       "rehearsal/create": {
         "realization": "api/controllers/RehearsalController.create",
         "httpMethod": "POST",
