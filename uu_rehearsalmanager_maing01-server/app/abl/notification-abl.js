@@ -68,6 +68,28 @@ class NotificationAbl {
         return dtoOut;
     }
 
+    async update(ucEnv) {
+        logger.debug("Validating NotificationUpdate input");
+        let dtoIn = ucEnv.getDtoIn();
+        let validationResult = this.validator.validate("notificationUpdateDtoInType", dtoIn);
+        let uuAppErrorMap = ValidationHelper.processValidationResult(dtoIn, validationResult, WARNINGS.createUnsupportedKeys.code, Errors.Create.invalidDtoIn);
+
+        dtoIn = {...dtoIn,  awid: ucEnv.getUri().getAwid()};
+        let dtoOut;
+
+        try {
+            logger.debug("Going to update notification");
+            dtoOut = await this.dao.update(dtoIn);
+        } catch (e) {
+            if (e instanceof ObjectStoreError) {
+                throw new Errors.Create.NotificationDaoCreateFailed({uuAppErrorMap}, e);
+            }
+            throw e;
+        }
+        dtoOut.uuAppErrorMap = uuAppErrorMap;
+        return dtoOut;
+    }
+
 }
 
 module.exports = new NotificationAbl();

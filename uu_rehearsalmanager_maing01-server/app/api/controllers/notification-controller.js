@@ -12,6 +12,10 @@ class NotificationController {
         return NotificationAbl.create(ucEnv);
     }
 
+    update(ucEnv) {
+        return NotificationAbl.update(ucEnv);
+    }
+
 }
 
 module.exports = new NotificationController();

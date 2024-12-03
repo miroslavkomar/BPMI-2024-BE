@@ -5,7 +5,7 @@ const { ObjectId } = require("mongodb");
 class NotificationMongo extends UuObjectDao {
 
   async createSchema() {
-    await super.createIndex({ awid: 1, actId: 1 });
+    await super.createIndex({ awid: 1, userId: 1, seen: 1 });
   }
 
   async list(awid, dtoIn) {
@@ -15,6 +15,14 @@ class NotificationMongo extends UuObjectDao {
 
   async create(notification) {
     return super.insertOne(notification);
+  }
+
+  async update(notification) {
+    let filter = {
+      awid: notification.awid,
+      id: notification.id
+    };
+    return await super.findOneAndUpdate(filter, notification, "NONE");
   }
 }
 

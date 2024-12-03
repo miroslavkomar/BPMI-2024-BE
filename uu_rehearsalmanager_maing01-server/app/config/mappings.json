@@ -95,6 +95,11 @@
         "realization": "api/controllers/NotificationController.create",
         "httpMethod": "POST",
         "type": "CMD"
+      },
+      "notification/update": {
+        "realization": "api/controllers/NotificationController.update",
+        "httpMethod": "POST",
+        "type": "CMD"
       }
     }
   }

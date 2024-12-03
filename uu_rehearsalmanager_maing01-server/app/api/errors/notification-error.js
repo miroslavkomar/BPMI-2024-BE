@@ -38,7 +38,26 @@ const Create = {
     }
 }
 
+const Update = {
+    UC_CODE: `${RehearsalmanagerNotificationUseCaseError.ERROR_PREFIX}update`,
+    invalidDtoIn: class extends RehearsalmanagerNotificationUseCaseError {
+        constructor() {
+            super(...arguments);
+            this.code = `${Update.UC_CODE}/invalidDtoIn`;
+            this.message = "DtoIn is not valid.";
+        }
+    },
+    NotificationDaoUpdateFailed: class extends RehearsalmanagerNotificationUseCaseError {
+        constructor() {
+            super(...arguments);
+            this.code = `${Update.UC_CODE}/notificationDaoUpdateFailed`;
+            this.message = "Updating notification failed.";
+        }
+    }
+}
+
 module.exports = {
     List,
-    Create
+    Create,
+    Update
 }
