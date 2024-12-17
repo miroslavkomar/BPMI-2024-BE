@@ -70,6 +70,10 @@
         "sysStateList": ["active"],
         "profileList": ["Public"]
       },
+      "rehearsal/confirm": {
+        "sysStateList": ["active"],
+        "profileList": ["Authenticated"]
+      },
       "actor/list": {
         "sysStateList": ["active"],
         "profileList": ["Public"]

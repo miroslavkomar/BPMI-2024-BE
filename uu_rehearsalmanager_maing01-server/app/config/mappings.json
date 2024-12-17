@@ -81,6 +81,11 @@
         "httpMethod": "GET",
         "type": "CMD"
       },
+      "rehearsal/confirm": {
+        "realization": "api/controllers/RehearsalController.confirmPresence",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
       "actor/list": {
         "realization": "api/controllers/ActorController.list",
         "httpMethod": "GET",

@@ -8,17 +8,17 @@ const Create = {
     constructor() {
       super(...arguments);
       this.code = `${Create.UC_CODE}/invalidDtoIn`;
-      this.message = 'DtoIn is not valid.';
+      this.message = "DtoIn is not valid.";
     }
   },
   RehearsalDaoCreateFailed: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${Create.UC_CODE}/rehearsalDaoCreateFailed`;
-      this.message = 'Creating rehearsal failed';
+      this.message = "Creating rehearsal failed";
     }
-  }
-}
+  },
+};
 
 const List = {
   UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}list`,
@@ -27,17 +27,17 @@ const List = {
     constructor() {
       super(...arguments);
       this.code = `${List.UC_CODE}/invalidDtoIn`;
-      this.message = 'DtoIn is not valid.';
+      this.message = "DtoIn is not valid.";
     }
   },
   RehearsalDaoListFailed: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${List.UC_CODE}/rehearsalDaoListFailed`;
-      this.message = 'Getting rehearsal list failed';
+      this.message = "Getting rehearsal list failed";
     }
-  }
-}
+  },
+};
 
 const Update = {
   UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}update`,
@@ -46,17 +46,17 @@ const Update = {
     constructor() {
       super(...arguments);
       this.code = `${Update.UC_CODE}/invalidDtoIn`;
-      this.message = 'DtoIn is not valid.';
+      this.message = "DtoIn is not valid.";
     }
   },
   RehearsalDaoUpdateFailed: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${Update.UC_CODE}/rehearsalDaoUpdateFailed`;
-      this.message = 'Updating rehearsal failed';
+      this.message = "Updating rehearsal failed";
     }
-  }
-}
+  },
+};
 
 const MemberList = {
   UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}member/list`,
@@ -65,21 +65,41 @@ const MemberList = {
     constructor() {
       super(...arguments);
       this.code = `${MemberList.UC_CODE}/invalidDtoIn`;
-      this.message = 'DtoIn is not valid.';
+      this.message = "DtoIn is not valid.";
     }
   },
   RehearsalDaoGetFailed: class extends RehearsalmanagerRehearsalUseCaseError {
     constructor() {
       super(...arguments);
       this.code = `${MemberList.UC_CODE}/rehearsalDaoGetFailed`;
-      this.message = 'Getting rehearsal member list failed';
+      this.message = "Getting rehearsal member list failed";
     }
-  }
-}
+  },
+};
+
+const ConfirmPresence = {
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}confirmPresence`,
+
+  invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${ConfirmPresence.UC_CODE}/invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
+    }
+  },
+  RehearsalDaoConfirmPresenceFailed: class extends RehearsalmanagerRehearsalUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${ConfirmPresence.UC_CODE}/rehearsalDaoConrimPresenceFailed`;
+      this.message = "Confirming user's presence for the rehearsal has failed";
+    }
+  },
+};
 
 module.exports = {
   Create,
   List,
   Update,
-  MemberList
-}
+  MemberList,
+  ConfirmPresence,
+};

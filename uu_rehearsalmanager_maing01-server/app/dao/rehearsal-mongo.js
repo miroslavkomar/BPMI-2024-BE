@@ -3,10 +3,10 @@ const { UuObjectDao } = require("uu_appg01_server").ObjectStore;
 
 class RehearsalMongo extends UuObjectDao {
   async createSchema() {
-    await super.createIndex( { awid: 1, actId: 1});
+    await super.createIndex({ awid: 1, actId: 1 });
   }
 
-  async create(rehearsal){
+  async create(rehearsal) {
     return super.insertOne(rehearsal);
   }
 
@@ -22,16 +22,16 @@ class RehearsalMongo extends UuObjectDao {
   async list(awid, sceneIds, isValid, dateFrom, dateTo, pageInfo) {
     const filter = {
       awid: awid,
-      ...sceneIds.length > 0 && {sceneList: {$in: sceneIds}},
+      ...(sceneIds.length > 0 && { sceneList: { $in: sceneIds } }),
       valid: isValid,
       ...((dateFrom || dateTo) && {
         date: {
-          ...(dateFrom && {$gte: dateFrom}),
-          ...(dateTo && {$lte: dateTo})
-        }
+          ...(dateFrom && { $gte: dateFrom }),
+          ...(dateTo && { $lte: dateTo }),
+        },
       }),
     };
-    return super.find(filter, pageInfo, {"sys.cts": 1});
+    return super.find(filter, pageInfo, { "sys.cts": 1 });
   }
 
   async update(rehearsal) {
@@ -42,6 +42,21 @@ class RehearsalMongo extends UuObjectDao {
     return await super.findOneAndUpdate(filter, rehearsal, "NONE");
   }
 
+  async confirmPresence(rehearsal) {
+    let filter = {
+      awid: rehearsal.awid,
+      id: rehearsal.id,
+      "presenceList.uuIdentity": rehearsal.userId,
+    };
+
+    const updatePresence = {
+      $set: {
+        "presenceList.$.confirmed": true,
+      },
+    };
+
+    return await super.findOneAndUpdate(filter, updatePresence, "NONE");
+  }
 }
 
 module.exports = RehearsalMongo;

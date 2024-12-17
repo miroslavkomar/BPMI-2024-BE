@@ -25,3 +25,7 @@ const rehearsalUpdateDtoInType = shape({
 const rehearsalMemberListDtoInType = shape({
   id: id().isRequired()
 });
+
+const rehearsalConfirmpresenceDtoInType = shape({
+  id: id().isRequired()
+})

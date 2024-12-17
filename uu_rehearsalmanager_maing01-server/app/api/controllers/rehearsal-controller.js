@@ -2,7 +2,6 @@
 const RehearsalAbl = require("../../abl/rehearsal-abl.js");
 
 class RehearsalController {
-
   create(ucEnv) {
     return RehearsalAbl.create(ucEnv);
   }
@@ -19,6 +18,9 @@ class RehearsalController {
     return RehearsalAbl.memberList(ucEnv);
   }
 
+  confirmPresence(ucEnv) {
+    return RehearsalAbl.confirmPresence(ucEnv);
+  }
 }
 
 module.exports = new RehearsalController();
