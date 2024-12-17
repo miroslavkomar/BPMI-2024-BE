@@ -46,16 +46,14 @@ class RehearsalMongo extends UuObjectDao {
     let filter = {
       awid: rehearsal.awid,
       id: rehearsal.id,
-      "presenceList.uuIdentity": rehearsal.userId,
     };
 
-    const updatePresence = {
-      $set: {
-        "presenceList.$.confirmed": true,
-      },
+    const userPresence = {
+      uuIdentity: rehearsal.userId,
+      confirmed: true,
     };
 
-    return await super.findOneAndUpdate(filter, updatePresence, "NONE");
+    return await super.findOneAndUpdate(filter, { $addToSet: { presenceList: userPresence } }, "NONE");
   }
 }
 
