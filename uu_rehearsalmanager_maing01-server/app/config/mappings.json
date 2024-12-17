@@ -86,6 +86,11 @@
         "httpMethod": "POST",
         "type": "CMD"
       },
+      "rehearsal/reject": {
+        "realization": "api/controllers/RehearsalController.reject",
+        "httpMethod": "POST",
+        "type": "CMD"
+      },
       "actor/list": {
         "realization": "api/controllers/ActorController.list",
         "httpMethod": "GET",

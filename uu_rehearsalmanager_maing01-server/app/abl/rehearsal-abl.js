@@ -22,6 +22,9 @@ const WARNINGS = {
   confirmPresenceUnsupportedKeys: {
     code: `${Errors.ConfirmPresence.UC_CODE}/unsupportedKeys`,
   },
+  rejectUnsupportedKeys: {
+    code: `${Errors.Reject.UC_CODE}/unsupportedKeys`,
+  },
 };
 
 class RehearsalAbl {
@@ -207,6 +210,40 @@ class RehearsalAbl {
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         throw new Errors.ConfirmPresence.RehearsalDaoConfirmPresenceFailed({ uuAppErrorMap }, e);
+      }
+      throw e;
+    }
+    dtoOut.uuAppErrorMap = uuAppErrorMap;
+    return dtoOut;
+  }
+
+  async reject(ucEnv) {
+    logger.debug("Validating RehearsalReject input");
+    let dtoIn = ucEnv.getDtoIn();
+    let validationResult = this.validator.validate("rehearsalRejectDtoInType", dtoIn);
+    let uuAppErrorMap = ValidationHelper.processValidationResult(
+      dtoIn,
+      validationResult,
+      WARNINGS.rejectUnsupportedKeys.code,
+      Errors.Reject.invalidDtoIn,
+    );
+
+    dtoIn = {
+      ...dtoIn,
+      ...{
+        awid: ucEnv.getUri().getAwid(),
+        userId: ucEnv.getSession().getIdentity().getUuIdentity(),
+      },
+    };
+
+    let dtoOut = {};
+
+    try {
+      logger.debug("Going to reject presence");
+      dtoOut = (await this.dao.reject(dtoIn)) || {};
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        throw new Errors.Reject.RehearsalDaoRejectFailed({ uuAppErrorMap }, e);
       }
       throw e;
     }

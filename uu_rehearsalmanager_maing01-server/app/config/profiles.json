@@ -72,7 +72,11 @@
       },
       "rehearsal/confirm": {
         "sysStateList": ["active"],
-        "profileList": ["Authenticated"]
+        "profileList": ["Authorities"]
+      },
+      "rehearsal/reject": {
+        "sysStateList": ["active"],
+        "profileList": ["Authorities"]
       },
       "actor/list": {
         "sysStateList": ["active"],

@@ -4,7 +4,7 @@ const rehearsalCreateDtoInType = shape({
   locationId: string(1, 128).isRequired(),
   date: datetime(),
   actId: string(1, 128),
-  presenceList: array(uuIdentity(), 0, 10)
+  presenceList: array(shape({ uuIdentity: uuIdentity(), confirmed: boolean() }), 0, 10)
 });
 
 const rehearsalListDtoInType = shape({
@@ -19,7 +19,7 @@ const rehearsalUpdateDtoInType = shape({
   date: datetime(),
   valid: boolean(),
   sceneList: array(string(1, 128)),
-  presenceList: array(uuIdentity(), 0, 10),
+  presenceList: array(shape({ uuIdentity: uuIdentity(), confirmed: boolean() }), 0, 10),
 });
 
 const rehearsalMemberListDtoInType = shape({
@@ -27,5 +27,9 @@ const rehearsalMemberListDtoInType = shape({
 });
 
 const rehearsalConfirmpresenceDtoInType = shape({
+  id: id().isRequired()
+})
+
+const rehearsalRejectDtoInType = shape({
   id: id().isRequired()
 })

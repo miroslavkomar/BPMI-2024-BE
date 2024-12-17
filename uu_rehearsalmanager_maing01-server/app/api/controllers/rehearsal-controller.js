@@ -21,6 +21,10 @@ class RehearsalController {
   confirmPresence(ucEnv) {
     return RehearsalAbl.confirmPresence(ucEnv);
   }
+
+  reject(ucEnv) {
+    return RehearsalAbl.reject(ucEnv);
+  }
 }
 
 module.exports = new RehearsalController();

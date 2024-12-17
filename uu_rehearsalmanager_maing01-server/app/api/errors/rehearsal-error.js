@@ -96,10 +96,30 @@ const ConfirmPresence = {
   },
 };
 
+const Reject = {
+  UC_CODE: `${RehearsalmanagerRehearsalUseCaseError.ERROR_PREFIX}reject`,
+
+  invalidDtoIn: class extends RehearsalmanagerRehearsalUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Reject.UC_CODE}/invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
+    }
+  },
+  RehearsalDaoRejectFailed: class extends RehearsalmanagerRehearsalUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Reject.UC_CODE}/rehearsalDaoRejectFailed`;
+      this.message = "Rejecting rehearsal presence has failed";
+    }
+  },
+};
+
 module.exports = {
   Create,
   List,
   Update,
   MemberList,
   ConfirmPresence,
+  Reject,
 };
