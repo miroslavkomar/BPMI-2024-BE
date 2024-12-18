@@ -16,6 +16,7 @@ const rehearsalListDtoInType = shape({
 
 const rehearsalUpdateDtoInType = shape({
   id: id().isRequired(),
+  locationId: string(1, 128),
   date: datetime(),
   valid: boolean(),
   sceneList: array(string(1, 128)),
