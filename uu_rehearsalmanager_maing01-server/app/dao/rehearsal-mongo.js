@@ -19,11 +19,9 @@ class RehearsalMongo extends UuObjectDao {
     return super.findOne(filter);
   }
 
-  async list(awid, sceneIds, isValid, dateFrom, dateTo, pageInfo) {
+  async list(awid, sceneIds, isOrganizer, dateFrom, dateTo, pageInfo) {
     const filter = {
       awid: awid,
-      ...(sceneIds.length > 0 && { sceneList: { $in: sceneIds } }),
-      valid: isValid,
       ...((dateFrom || dateTo) && {
         date: {
           ...(dateFrom && { $gte: dateFrom }),
@@ -31,6 +29,14 @@ class RehearsalMongo extends UuObjectDao {
         },
       }),
     };
+    if (isOrganizer) {
+      filter.$or = [{valid: true}, {valid: false}];
+    } else {
+      if (sceneIds.length > 0) {
+        filter.sceneList = { $in: sceneIds };
+        }
+      }
+      filter.valid = true;
     return super.find(filter, pageInfo, { "sys.cts": 1 });
   }
 

@@ -32,6 +32,7 @@ class RehearsalAbl {
     this.validator = Validator.load();
     this.dao = DaoFactory.getDao("rehearsal");
     this.sceneDao = DaoFactory.getDao("scene");
+    this.permissionDao = DaoFactory.getDao("sysPermission");
   }
 
   async create(ucEnv) {
@@ -97,9 +98,9 @@ class RehearsalAbl {
       const sceneIds = scenesWhereUserActorOrDirector.itemList.map((item) => item.id.toString());
 
       logger.debug("Going to get rehearsal list");
-      // TODO invalid rehearsals can be listed by ORGANISER
-      let isValid = true;
-      dtoOut = await this.dao.list(awid, sceneIds, isValid, null, null, dtoIn.pageInfo);
+      const organizers = await this.permissionDao.listByUuIdentityAndAppProfile(ucEnv.getUri().getAwid(), {profileList: ["Organizers"]}, dtoIn.pageInfo);
+      const isOrganizer = organizers.itemList.some((organizer) => organizer.uuIdentity === uuIdentity);
+      dtoOut = await this.dao.list(awid, sceneIds, isOrganizer, null, null, dtoIn.pageInfo);
     } catch (e) {
       if (e instanceof ObjectStoreError) {
         throw new Errors.List.RehearsalDaoListFailed({ uuAppErrorMap }, e);

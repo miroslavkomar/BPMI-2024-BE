@@ -27,6 +27,7 @@ class SceneAbl {
     this.validator = Validator.load();
     this.dao = DaoFactory.getDao("scene");
     this.rehearsalDao = DaoFactory.getDao("rehearsal");
+    this.permissionDao = DaoFactory.getDao("sysPermission");
   }
 
   async create(ucEnv) {
@@ -98,7 +99,14 @@ class SceneAbl {
       if (rehearsalList.itemList.length > 0) {
         throw new Errors.Update.ScenePlannedInRehearsal({uuAppErrorMap});
       }
-      // todo check if actors exist (if uuIdentity has permission "Actor" in permissions collection) implement in Authorization task
+      const actors = await this.permissionDao.listByUuIdentityAndAppProfile(ucEnv.getUri().getAwid(), {profileList: ["Actors"]}, dtoIn.pageInfo);
+      dtoIn.characterList.flatMap(character => character.actorList)
+        .forEach(actor => {
+          const actorIdentities = actors.itemList.map((actor) => actor.uuIdentity);
+          if (!actorIdentities.includes(actor)) {
+            throw new Errors.Update.ActorDoesNotExist({uuAppErrorMap});
+          }
+        });
       dtoOut = await this.dao.update(dtoIn);
     } catch (e) {
       if (e instanceof ObjectStoreError) {

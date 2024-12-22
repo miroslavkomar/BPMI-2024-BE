@@ -62,6 +62,13 @@ const Update = {
       this.code = `${Update.UC_CODE}/scenePlannedInRehearsal`;
       this.message = 'Updating scene failed because it is planned in active rehearsal';
     }
+  },
+  ActorDoesNotExist: class extends RehearsalmanagerSceneUseCaseError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Update.UC_CODE}/actorDoesNotExist`;
+      this.message = 'Updating scene failed because actor does not exist';
+    }
   }
 }
 

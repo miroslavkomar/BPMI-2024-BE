@@ -32,35 +32,35 @@
       },
       "scene/create": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Directors"]
       },
       "scene/list": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Directors"]
       },
       "scene/update": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Directors"]
       },
       "scene/delete": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Directors"]
       },
       "location/list": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Organizers"]
       },
       "location/create": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Organizers"]
       },
       "location/update": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Organizers"]
       },
       "rehearsal/create": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Organizers"]
       },
       "rehearsal/list": {
         "sysStateList": ["active"],
@@ -68,7 +68,7 @@
       },
       "rehearsal/update": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Organizers"]
       },
       "rehearsal/member/list": {
         "sysStateList": ["active"],
@@ -76,27 +76,27 @@
       },
       "rehearsal/confirm": {
         "sysStateList": ["active"],
-        "profileList": ["Authorities"]
+        "profileList": ["Directors, Actors"]
       },
       "rehearsal/reject": {
         "sysStateList": ["active"],
-        "profileList": ["Authorities"]
+        "profileList": ["Directors, Actors"]
       },
       "actor/list": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Directors"]
       },
       "notification/list": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Authorities"]
       },
       "notification/create": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Organizers"]
       },
       "notification/update": {
         "sysStateList": ["active"],
-        "profileList": ["Public"]
+        "profileList": ["Authorities"]
       }
     }
   }
